@@ -31,7 +31,7 @@
 
 <body>
     @php
-        $baseURL = 'https://localhost:8000/api/';
+        $baseURL = 'api/';
     @endphp
     <div
         class="wrapper container-fluid bg-primary d-flex flex-column justify-content-center align-items-center min-vh-100">
@@ -545,7 +545,7 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="p-2 bg-primary rounded-3 text-white block me-3">GET</div>
                                                 <div>
-                                                    <div class="title">Danh sách sản phẩm</div>
+                                                    <div class="title">Danh sách sản phẩm (public)</div>
                                                     <mark>{{ $baseURL }}products</mark>
                                                 </div>
                                             </div>
