@@ -43,7 +43,7 @@
                         <div class="card-header bg-info">
                             Response Data Format
                         </div>
-                        <img src="storage/Picture1.png" class="card-img-bottom img-fluid w-full" alt="...">
+                        <img src="images/Picture1.png" class="card-img-bottom img-fluid w-full" alt="...">
                     </div>
                 </div>
                 <div class="col-8">
