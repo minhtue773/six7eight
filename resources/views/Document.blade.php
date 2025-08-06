@@ -26,6 +26,10 @@
             overflow: auto;
             scroll-behavior: smooth;
         }
+
+        .title {
+            color: red;
+        }
     </style>
 </head>
 
@@ -38,7 +42,7 @@
         <h1 class="text-white my-5">Document API</h1>
         <div class="container">
             <div class="row">
-                <div class="col-4">
+                <div class="col-md-4 col-12 mb-4">
                     <div class="card">
                         <div class="card-header bg-info">
                             Response Data Format
@@ -46,7 +50,7 @@
                         <img src="images/Picture1.png" class="card-img-bottom img-fluid w-full" alt="...">
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-md-8 col-12 mb-4">
                     <div class="container">
                         <div class="accordion accordion-flush" id="accordionExample">
                             {{-- Auth --}}
@@ -71,7 +75,7 @@
                                                     <div><mark>{{ $baseURL }}auth/login</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div>
                                                 <strong>Body</strong>
                                                 <ul>
@@ -79,6 +83,7 @@
                                                     <li>password</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Đăng ký -->
@@ -90,14 +95,32 @@
                                                     <div><mark>{{ $baseURL }}auth/register</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div>
                                                 <strong>Body</strong>
                                                 <ul>
                                                     <li>name, email, password</li>
-                                                    <li>role, status</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
+                                        </div>
+                                        <!-- Đăng ký -->
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="p-2 bg-primary rounded-3 text-white block me-3">GET</div>
+                                                <div>
+                                                    <div class="title">Xác thực email</div>
+                                                    <div><mark>{{ $baseURL }}auth/verify-email</mark></div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <strong>Param</strong>
+                                                <ul>
+                                                    <li>Token</li>
+                                                </ul>
+                                            </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Lấy thông tin người dùng -->
@@ -109,6 +132,7 @@
                                                     <div><mark>{{ $baseURL }}auth/profile</mark></div>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Làm mới token -->
@@ -120,6 +144,7 @@
                                                     <div><mark>{{ $baseURL }}auth/refresh</mark></div>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Đăng xuất -->
@@ -131,6 +156,7 @@
                                                     <div><mark>{{ $baseURL }}auth/logout</mark></div>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Cập nhật thông tin -->
@@ -142,7 +168,6 @@
                                                     <div><mark>{{ $baseURL }}auth/update/{id}</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
                                             <div>
                                                 <strong>Body</strong>
                                                 <ul>
@@ -151,6 +176,7 @@
                                                     <li>photo (avatar)</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Xóa tài khoản -->
@@ -162,6 +188,7 @@
                                                     <div><mark>{{ $baseURL }}auth/delete/{id}</mark></div>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                     </div>
@@ -188,7 +215,7 @@
                                                     <div><mark>{{ $baseURL }}users</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div>
                                                 <strong>Query Params</strong>
                                                 <ul>
@@ -204,6 +231,7 @@
                                                     <li><code>sort_order</code>: Kiểu sắp xếp (giá trị: asc, desc)</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
                                         <!-- Lấy chi tiết người dùng -->
                                         <div class="mb-3">
@@ -214,6 +242,7 @@
                                                     <div><mark>{{ $baseURL }}users/{id}</mark></div>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Tạo người dùng -->
@@ -225,7 +254,7 @@
                                                     <div><mark>{{ $baseURL }}users</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div>
                                                 <strong>Body</strong>
                                                 <ul>
@@ -235,6 +264,7 @@
                                                     <li>photo (upload avatar - optional)</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Cập nhật người dùng -->
@@ -246,7 +276,7 @@
                                                     <div><mark>{{ $baseURL }}users/{id}</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div>
                                                 <strong>Body</strong>
                                                 <ul>
@@ -256,6 +286,7 @@
                                                     <li>photo (upload avatar - optional)</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Xoá người dùng -->
@@ -267,6 +298,7 @@
                                                     <div><mark>{{ $baseURL }}users/{id}</mark></div>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Xoá nhiều người dùng -->
@@ -278,13 +310,14 @@
                                                     <div><mark>{{ $baseURL }}users/destroy</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div>
                                                 <strong>Body</strong>
                                                 <ul>
                                                     <li>ids: mảng các ID cần xoá</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Xoá vĩnh viễn -->
@@ -296,13 +329,14 @@
                                                     <div><mark>{{ $baseURL }}users/force-delete</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div>
                                                 <strong>Body</strong>
                                                 <ul>
                                                     <li>ids: mảng các ID cần xoá vĩnh viễn</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Khôi phục người dùng -->
@@ -314,16 +348,15 @@
                                                     <div><mark>{{ $baseURL }}users/restore</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div>
                                                 <strong>Body</strong>
                                                 <ul>
                                                     <li>ids: mảng các ID cần khôi phục</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -349,7 +382,7 @@
                                                     <div><mark>{{ $baseURL }}product-categories</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div><strong>Query Params:</strong>
                                                 <ul>
                                                     <li><code>q:</code> tìm kiếm theo tên</li>
@@ -359,6 +392,7 @@
                                                     <li><code>sort_order:</code> asc, desc</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Chi tiết danh mục -->
@@ -370,6 +404,7 @@
                                                     <div><mark>{{ $baseURL }}product-categories/{id}</mark></div>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Thêm danh mục -->
@@ -381,7 +416,7 @@
                                                     <div><mark>{{ $baseURL }}product-categories</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div><strong>Body:</strong>
                                                 <ul>
                                                     <li>name: tên danh mục</li>
@@ -390,6 +425,7 @@
                                                     <li>photo: ảnh thumbnail (tệp ảnh)</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Cập nhật danh mục -->
@@ -401,7 +437,7 @@
                                                     <div><mark>{{ $baseURL }}product-categories/{id}</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div><strong>Body:</strong>
                                                 <ul>
                                                     <li>name: tên danh mục</li>
@@ -410,6 +446,7 @@
                                                     <li>photo: ảnh mới (nếu có)</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Xoá danh mục -->
@@ -421,6 +458,7 @@
                                                     <div><mark>{{ $baseURL }}product-categories/{id}</mark></div>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                     </div>
@@ -448,7 +486,7 @@
                                                     <div><mark>{{ $baseURL }}brands</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div>
                                                 <strong>Query Params</strong>
                                                 <ul>
@@ -459,6 +497,7 @@
                                                     <li><code>sort_order:</code> Thứ tự sắp xếp (values: asc, desc)</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Lấy chi tiết thương hiệu -->
@@ -470,6 +509,7 @@
                                                     <div><mark>{{ $baseURL }}brands/{id}</mark></div>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Tạo mới thương hiệu -->
@@ -481,7 +521,7 @@
                                                     <div><mark>{{ $baseURL }}brands</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div>
                                                 <strong>Body</strong>
                                                 <ul>
@@ -490,6 +530,7 @@
                                                     <li>is_featured: Nổi bật (0 hoặc 1)</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Cập nhật thương hiệu -->
@@ -501,7 +542,7 @@
                                                     <div><mark>{{ $baseURL }}brands/{id}</mark></div>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <div>
                                                 <strong>Body</strong>
                                                 <ul>
@@ -510,6 +551,7 @@
                                                     <li>is_featured: Nổi bật (0 hoặc 1)</li>
                                                 </ul>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Xóa thương hiệu -->
@@ -521,6 +563,7 @@
                                                     <div><mark>{{ $baseURL }}brands/{id}</mark></div>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                     </div>
@@ -549,7 +592,7 @@
                                                     <mark>{{ $baseURL }}products</mark>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <strong>Query Parameters:</strong>
                                             <ul>
                                                 <li><code>q</code> – Từ khóa tìm kiếm theo tên, mô tả</li>
@@ -567,6 +610,7 @@
                                                 <li><code>limit</code> – Số lượng mỗi trang (mặc định: 10)</li>
                                                 <li><code>page</code> – Trang hiện tại</li>
                                             </ul>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Chi tiết sản phẩm -->
@@ -578,6 +622,7 @@
                                                     <mark>{{ $baseURL }}products/{id}</mark>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Tạo sản phẩm -->
@@ -589,7 +634,7 @@
                                                     <mark>{{ $baseURL }}products</mark>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <strong>Body (multipart/form-data):</strong>
                                             <ul>
                                                 <li><code>name</code> – Tên sản phẩm (string, required)</li>
@@ -618,6 +663,7 @@
 ]</pre>
                                                 </li>
                                             </ul>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Cập nhật sản phẩm -->
@@ -629,7 +675,7 @@
                                                     <mark>{{ $baseURL }}products/{id}</mark>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <strong>Body (multipart/form-data):</strong>
                                             <ul>
                                                 <li>Tất cả các trường giống <code>POST</code>, nhưng đều
@@ -640,6 +686,7 @@
                                                 <li><code>images[]</code> – Nếu muốn thêm ảnh phụ mới</li>
                                                 <li><code>variants[]</code> – Nếu muốn ghi đè biến thể</li>
                                             </ul>
+                                            <hr class="my-1">
                                         </div>
                                         <!-- Xoá mềm sản phẩm -->
                                         <div class="mb-3">
@@ -650,6 +697,7 @@
                                                     <mark>{{ $baseURL }}products/{id}</mark>
                                                 </div>
                                             </div>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Xoá mềm nhiều sản phẩm -->
@@ -661,11 +709,12 @@
                                                     <mark>{{ $baseURL }}products</mark>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
+
                                             <strong>Body:</strong>
                                             <ul>
                                                 <li><code>ids</code>: Mảng các ID sản phẩm cần xoá</li>
                                             </ul>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Xoá vĩnh viễn -->
@@ -677,11 +726,12 @@
                                                     <mark>{{ $baseURL }}products/force-delete</mark>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
-                                            <strong>Body:</strong>
+
+                                            <strong>Body</strong>
                                             <ul>
                                                 <li><code>ids</code>: Mảng các ID sản phẩm cần xoá vĩnh viễn</li>
                                             </ul>
+                                            <hr class="my-1">
                                         </div>
 
                                         <!-- Khôi phục sản phẩm -->
@@ -693,11 +743,130 @@
                                                     <mark>{{ $baseURL }}products/restore</mark>
                                                 </div>
                                             </div>
-                                            <hr class="my-1">
-                                            <strong>Body:</strong>
+
+                                            <strong>Body</strong>
                                             <ul>
                                                 <li><code>ids</code>: Mảng các ID sản phẩm cần khôi phục</li>
                                             </ul>
+                                            <hr class="my-1">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Cart --}}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingCart">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseCart"
+                                        aria-expanded="false" aria-controls="collapseCart">
+                                        Cart API
+                                    </button>
+                                </h2>
+                                <div id="collapseCart" class="accordion-collapse collapse"
+                                    aria-labelledby="headingCart" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body scroll-custom">
+
+                                        <!-- Lấy giỏ hàng -->
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="p-2 bg-primary rounded-3 text-white block me-3">GET</div>
+                                                <div>
+                                                    <div class="title">Lấy giỏ hàng hiện tại</div>
+                                                    <mark>{{ $baseURL }}cart</mark>
+                                                </div>
+                                            </div>
+                                            <hr class="my-1">
+                                        </div>
+
+                                        <!-- Thêm vào giỏ hàng -->
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="p-2 bg-success rounded-3 text-white block me-3">POST</div>
+                                                <div>
+                                                    <div class="title">Thêm sản phẩm vào giỏ</div>
+                                                    <mark>{{ $baseURL }}cart/add</mark>
+                                                </div>
+                                            </div>
+
+                                            <strong>Body (JSON):</strong>
+                                            <ul>
+                                                <li><code>product_variant_id</code> – ID biến thể sản phẩm (required)
+                                                </li>
+                                                <li><code>quantity</code> – Số lượng (integer, min: 1, required)</li>
+                                            </ul>
+                                            <strong>Response:</strong>
+                                            <pre>{
+  "success": true,
+  "message": "Đã thêm vào giỏ hàng!"
+}</pre>
+                                            <hr class="my-1">
+                                        </div>
+
+                                        <!-- Cập nhật giỏ hàng -->
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="p-2 bg-warning rounded-3 text-white block me-3">PATCH</div>
+                                                <div>
+                                                    <div class="title">Cập nhật số lượng sản phẩm</div>
+                                                    <mark>{{ $baseURL }}cart/update</mark>
+                                                </div>
+                                            </div>
+
+                                            <strong>Body (JSON):</strong>
+                                            <ul>
+                                                <li><code>product_variant_id</code> – ID biến thể sản phẩm (required)
+                                                </li>
+                                                <li><code>quantity</code> – Số lượng mới (integer, min: 1, required)
+                                                </li>
+                                            </ul>
+                                            <strong>Response:</strong>
+                                            <pre>{
+  "success": true,
+  "message": "Đã cập nhật giỏ hàng!"
+}</pre>
+                                            <hr class="my-1">
+                                        </div>
+
+                                        <!-- Xóa sản phẩm khỏi giỏ -->
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="p-2 bg-danger rounded-3 text-white block me-3">DELETE</div>
+                                                <div>
+                                                    <div class="title">Xóa sản phẩm khỏi giỏ</div>
+                                                    <mark>{{ $baseURL }}cart/remove</mark>
+                                                </div>
+                                            </div>
+
+                                            <strong>Body (JSON):</strong>
+                                            <ul>
+                                                <li><code>product_variant_id</code> – ID biến thể sản phẩm cần xóa</li>
+                                            </ul>
+                                            <strong>Response:</strong>
+                                            <pre>{
+  "success": true,
+  "message": "Đã xóa sản phẩm khỏi giỏ hàng!"
+}</pre>
+                                            <hr class="my-1">
+                                        </div>
+
+                                        <!-- Xóa toàn bộ giỏ hàng -->
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="p-2 bg-danger rounded-3 text-white block me-3">DELETE</div>
+                                                <div>
+                                                    <div class="title">Xóa toàn bộ giỏ hàng</div>
+                                                    <mark>{{ $baseURL }}cart/clear</mark>
+                                                </div>
+                                            </div>
+
+                                            <strong>Response:</strong>
+                                            <pre>{
+  "success": true,
+  "message": "Đã xóa toàn bộ giỏ hàng!"
+}</pre>
+                                            <hr class="my-1">
                                         </div>
 
                                     </div>

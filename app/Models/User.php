@@ -30,7 +30,8 @@ class User extends Authenticatable implements JWTSubject
         'address',
         'gender',
         'birthday',
-        'google_id'
+        'google_id',
+        'verify_token'
     ];
 
     /**
@@ -39,6 +40,7 @@ class User extends Authenticatable implements JWTSubject
      * @var list<string>
      */
     protected $hidden = [
+        'password',
         'remember_token',
     ];
 
@@ -63,4 +65,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+
 }

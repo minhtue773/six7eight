@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
@@ -21,7 +22,9 @@ Route::group([
     Route::post('auth/logout', [AuthController::class, 'logout']);
     Route::patch('auth/user/{user}', [AuthController::class, 'update']);
     Route::delete('auth/user/{user}', [AuthController::class, 'delete']);
-    Route::post('auth/refresh', [AuthController::class, 'refresh']);
+    // Route::post('auth/refresh', [AuthController::class, 'refresh']);
+    // SendMail
+    Route::get('auth/verify-email', [AuthController::class, 'verifyEmail']);
 
     // Users
     Route::middleware([AdminMiddleware::class])->group(function () {
@@ -58,15 +61,11 @@ Route::group([
     // Products
     Route::get('products', [ProductController::class, 'index']);
     Route::get('products/{product}', [ProductController::class, 'show']);
-
     Route::middleware(['auth:api', AdminMiddleware::class])->group(function () {
         Route::post('products', [ProductController::class, 'store']);
-
-
         Route::delete('products', [ProductController::class, 'destroy']); // Xoá mềm nhiều
         Route::delete('products/force-delete', [ProductController::class, 'forceDelete']); // Xoá vĩnh viễn
         Route::patch('products/restore', [ProductController::class, 'restore']); // Khôi phục
-
         Route::patch('products/{product}', [ProductController::class, 'update']);
         Route::delete('products/{product}', [ProductController::class, 'delete']);
     });
@@ -84,4 +83,11 @@ Route::group([
         Route::post('posts/{post}', [PostController::class, 'update']);
         Route::delete('posts/{post}', [PostController::class, 'delete']);
     });
+
+    //Cart
+    Route::get('cart', [CartController::class, 'index']);
+    Route::post('cart/add', [CartController::class, 'add']);
+    Route::patch('cart/update', [CartController::class, 'update']);
+    Route::delete('cart/remove', [CartController::class, 'remove']);
+    Route::delete('cart/clear', [CartController::class, 'clear']);
 });

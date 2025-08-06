@@ -4,34 +4,62 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserRequest;
+use App\Mail\VerifyEmail;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
+use Str;
 
 class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register', 'refresh']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'refresh', 'verifyEmail']]);
     }
 
-    public function register(UserRequest $request)
+    public function register(Request $request)
     {
-        $data = $request->only([
-            'name',
-            'email',
-            'password',
-            'role',
-            'status'
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
+        ], [
+            'name.required' => 'Vui lòng nhập họ tên.',
+            'name.max' => 'Họ tên không được vượt quá 255 ký tự.',
+
+            'email.required' => 'Vui lòng nhập email.',
+            'email.email' => 'Email không đúng định dạng.',
+            'email.max' => 'Email không được vượt quá 255 ký tự.',
+            'email.unique' => 'Email này đã được đăng ký.',
+
+            'password.required' => 'Vui lòng nhập mật khẩu.',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',
+            'password.confirmed' => 'Mật khẩu xác nhận không khớp.',
         ]);
-        $data['password'] = Hash::make($data['password']);
+
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['password'] = Hash::make($request->password);
+        $data['status'] = 0;
+        $data['role'] = 'customer';
+        $data['verify_token'] = Str::random(64);
         $user = User::create($data);
+        // Tạo đường dẫn xác minh (giả sử đang xác minh bằng ID)
+        $verifyUrl = '/verify-email?token=' . $user->verify_token;
+        // Gửi mail
+        Mail::to($user->email)->send(new VerifyEmail($user, $verifyUrl));
+
         return response()->json([
             'success' => true,
             'message' => 'Đăng ký thành công!',
-            'user' => $user
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+            ]
         ], 201);
     }
 
@@ -90,19 +118,19 @@ class AuthController extends Controller
         ]);
     }
 
-    public function refresh()
-    {
-        try {
-            $newToken = auth()->refresh();
-            return $this->respondWithToken($newToken);
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Làm mới token thất bại.',
-                'error' => $e->getMessage()
-            ], 500);
-        }
-    }
+    // public function refresh()
+    // {
+    //     try {
+    //         $newToken = auth()->refresh();
+    //         return $this->respondWithToken($newToken);
+    //     } catch (\Exception $e) {
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Làm mới token thất bại.',
+    //             'error' => $e->getMessage()
+    //         ], 500);
+    //     }
+    // }
 
     public function update(UserRequest $request, User $user)
     {
@@ -175,4 +203,21 @@ class AuthController extends Controller
             ]
         ]);
     }
+
+    public function verifyEmail(Request $request)
+    {
+        $token = $request->query('token');
+        $user = User::where('verify_token', $token)->first();
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'Token không hợp lệ.'], 400);
+        }
+
+        $user->email_verified_at = now();
+        $user->verify_token = null; // Vô hiệu hóa token
+        $user->status = 1; // Cập nhật trạng thái nếu muốn
+        $user->save();
+
+        return response()->json(['success' => true, 'message' => 'Xác minh email thành công.']);
+    }
+
 }
